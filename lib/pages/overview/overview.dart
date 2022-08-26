@@ -1,8 +1,11 @@
 import 'package:first_web/constants/controllers.dart';
 import 'package:first_web/helpers/responsiveness.dart';
+import 'package:first_web/pages/overview/widgets/availiable_drivers.dart';
 import 'package:first_web/pages/overview/widgets/overview_cards_large.dart';
 import 'package:first_web/pages/overview/widgets/overview_cards_medium.dart';
 import 'package:first_web/pages/overview/widgets/overview_cards_small.dart';
+import 'package:first_web/pages/overview/widgets/revenue_selection_large.dart';
+import 'package:first_web/pages/overview/widgets/revenue_selection_small.dart';
 import 'package:first_web/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,21 +34,26 @@ class OverViewPage extends StatelessWidget {
           ),
         ),
         Expanded(
-            child: ListView(
-          children: [
-            AnimatedSwitcher(
-              duration: const Duration(
-                milliseconds: 300,
+          child: ListView(
+            children: [
+              AnimatedSwitcher(
+                duration: const Duration(
+                  milliseconds: 300,
+                ),
+                child: (ResponsiveWidget.isLargeScreen(context) ||
+                        ResponsiveWidget.isMediumScreen(context))
+                    ? (ResponsiveWidget.isCustomScreen(context))
+                        ? const OverViewCardsMediumScreen()
+                        : const OverViewCardsLargeScreen()
+                    : const OverViewCardsSmallScreen(),
               ),
-              child: (ResponsiveWidget.isLargeScreen(context) ||
-                      ResponsiveWidget.isMediumScreen(context))
-                  ? (ResponsiveWidget.isCustomScreen(context))
-                      ? const OverViewCardsMediumScreen()
-                      : const OverViewCardsLargeScreen()
-                  : const OverViewCardsSmallScreen(),
-            )
-          ],
-        ))
+              (ResponsiveWidget.isSmallScreen(context))
+                  ? const RevenueSelectionSmall()
+                  : const RevenueSelectionLarge(),
+              const AvailialeDrivers(),
+            ],
+          ),
+        ),
       ],
     );
   }

@@ -44,7 +44,9 @@ class CustomPageRoute extends PageRouteBuilder {
                   secondaryAnimation,
                   widget,
                 ),
-            transitionDuration: const Duration(milliseconds: 1000),
+            transitionDuration: const Duration(
+              milliseconds: 500,
+            ),
             settings: RouteSettings(arguments: argument));
 
   static Widget buildPageTransitions<T>(
