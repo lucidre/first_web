@@ -1,5 +1,6 @@
 import 'package:first_web/constants/controllers.dart';
 import 'package:first_web/helpers/responsiveness.dart';
+import 'package:first_web/pages/clients/widgets/clients_table.dart';
 import 'package:first_web/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,10 @@ class ClientsPage extends StatelessWidget {
                   ),
                 ),
               ],
-            ))
+            )),
+        const Expanded(
+          child: ClientsTable(),
+        )
       ],
     );
   }
